@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kara Marshall Golf | Beginner Instruction</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep: #0a1f14;
+      --bg-green: #0d2b1a;
+      --accent-green: #2d6a4f;
+      --accent-blue: #1b4965;
+      --accent-blue-light: #5fa8d3;
+      --gold: #c9a962;
+      --gold-light: #e8d5a3;
+      --text-light: #f0f7f4;
+      --text-muted: #a8c5b8;
+      --card-bg: rgba(27, 73, 101, 0.15);
+      --border-subtle: rgba(201, 169, 98, 0.2);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg-deep);
+      color: var(--text-light);
+      overflow-x: hidden;
+    }
+
+    .font-display {
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* Animated gradient background */
+    .hero-bg {
+      background: 
+        radial-gradient(ellipse 80% 50% at 20% 40%, rgba(45, 106, 79, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 60% at 80% 60%, rgba(27, 73, 101, 0.5) 0%, transparent 50%),
+        radial-gradient(ellipse 100% 100% at 50% 100%, rgba(10, 31, 20, 1) 0%, transparent 70%),
+        var(--bg-deep);
+    }
+
+    /* Floating particles */
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--gold);
+      border-radius: 50%;
+      opacity: 0;
+      animation: float-particle 8s infinite ease-in-out;
+    }
+
+    @keyframes float-particle {
+      0%, 100% {
+        opacity: 0;
+        transform: translateY(100vh) scale(0);
+      }
+      10% {
+        opacity: 0.6;
+      }
+      90% {
+        opacity: 0.6;
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-100px) scale(1);
+      }
+    }
+
+    /* Grass animation */
+    .grass-blade {
+      position: absolute;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(to top, var(--accent-green), transparent);
+      transform-origin: bottom center;
+      animation: sway 3s infinite ease-in-out;
+    }
+
+    @keyframes sway {
+      0%, 100% { transform: rotate(-5deg); }
+      50% { transform: rotate(5deg); }
+    }
+
+    /* Golfer silhouette */
+    .golfer-silhouette {
+      filter: drop-shadow(0 0 60px rgba(201, 169, 98, 0.3));
+    }
+
+    /* Scroll reveal animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* Card hover effects */
+    .lesson-card {
+      background: linear-gradient(135deg, rgba(27, 73, 101, 0.3), rgba(45, 106, 79, 0.2));
+      border: 1px solid var(--border-subtle);
+      backdrop-filter: blur(10px);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .lesson-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--gold);
+      box-shadow: 0 20px 60px rgba(201, 169, 98, 0.15);
+    }
+
+    /* Button styles */
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), #b8944f);
+      color: var(--bg-deep);
+      font-weight: 600;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+
+    .btn-primary:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 40px rgba(201, 169, 98, 0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--gold);
+      font-weight: 600;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      border: 2px solid var(--gold);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+      background: var(--gold);
+      color: var(--bg-deep);
+    }
+
+    /* Checkmark bullets */
+    .check-item {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .check-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.25rem;
+      width: 1.25rem;
+      height: 1.25rem;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c9a962' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E") no-repeat center;
+      background-size: contain;
+    }
+
+    /* Navigation */
+    .nav-link {
+      position: relative;
+      color: var(--text-muted);
+      transition: color 0.3s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gold);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--gold);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Glow effect */
+    .glow-accent {
+      box-shadow: 0 0 80px rgba(45, 106, 79, 0.3), 0 0 120px rgba(27, 73, 101, 0.2);
+    }
+
+    /* Contact info card */
+    .contact-info-card {
+      background: linear-gradient(135deg, rgba(27, 73, 101, 0.25), rgba(45, 106, 79, 0.15));
+      border: 1px solid var(--border-subtle);
+      border-radius: 1rem;
+      padding: 1.25rem;
+      transition: all 0.3s ease;
+    }
+
+    .contact-info-card:hover {
+      border-color: var(--gold);
+      background: linear-gradient(135deg, rgba(27, 73, 101, 0.35), rgba(45, 106, 79, 0.25));
+    }
+
+    /* QR Container Large */
+    .qr-large-container {
+      background: #ffffff;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      display: inline-block;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* Focus states */
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 4px;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg-deep);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent-green);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--gold);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-4 backdrop-blur-md bg-[rgba(10,31,20,0.8)] border-b border-[rgba(201,169,98,0.1)]">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <a href="#" class="font-display text-2xl font-bold text-[var(--gold)]">KM Golf</a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#programs" class="nav-link">Programs</a>
+        <a href="#learn" class="nav-link">Curriculum</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+      <a href="#contact" class="btn-primary text-sm py-2 px-6">Book a Lesson</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-bg min-h-screen relative flex items-center overflow-hidden pt-20">
+    <div id="particles" class="absolute inset-0 pointer-events-none"></div>
+    <div id="grass" class="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-12 items-center relative z-10">
+      <div class="space-y-8">
+        <div class="reveal">
+          <span class="inline-block px-4 py-2 rounded-full bg-[rgba(201,169,98,0.15)] text-[var(--gold)] text-sm font-medium tracking-wider uppercase mb-6">
+            Beginner Golf Instruction
+          </span>
+        </div>
+        
+        <h1 class="reveal reveal-delay-1 font-display text-5xl md:text-7xl font-bold leading-tight">
+          Learn Golf with
+          <span class="block text-[var(--gold)]">Confidence</span>
+        </h1>
+        
+        <p class="reveal reveal-delay-2 text-xl text-[var(--text-muted)] max-w-lg leading-relaxed">
+          Master the fundamentals of golf in a fun, relaxed environment. Build skills that last a lifetime with personalized instruction.
+        </p>
+        
+        <div class="reveal reveal-delay-3 flex flex-wrap gap-4 pt-4">
+          <a href="#programs" class="btn-primary">Explore Programs</a>
+          <a href="#contact" class="btn-secondary">Get in Touch</a>
+        </div>
+
+        <div class="reveal reveal-delay-4 grid grid-cols-3 gap-8 pt-8 border-t border-[var(--border-subtle)]">
+          <div>
+            <div class="text-3xl font-bold text-[var(--gold)]">500+</div>
+            <div class="text-sm text-[var(--text-muted)]">Students Taught</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold text-[var(--gold)]">10+</div>
+            <div class="text-sm text-[var(--text-muted)]">Years Experience</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold text-[var(--gold)]">98%</div>
+            <div class="text-sm text-[var(--text-muted)]">Satisfaction</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative flex justify-center items-center">
+        <div class="absolute w-96 h-96 rounded-full bg-gradient-to-br from-[var(--accent-green)] to-[var(--accent-blue)] opacity-20 blur-3xl"></div>
+        <svg class="golfer-silhouette w-80 h-96 md:w-96 md:h-[500px] relative z-10" viewBox="0 0 400 500" fill="none">
+          <g fill="white" opacity="0.9">
+            <circle cx="200" cy="45" r="28"/>
+            <path d="M200 73 C160 80, 140 120, 145 180 L145 280 C145 290, 155 300, 170 300 L175 300 L175 380 C175 395, 160 400, 155 420 L145 480 C143 490, 150 500, 165 500 C175 500, 183 495, 185 485 L195 420 C198 405, 210 400, 215 400 L215 400 C220 400, 232 405, 235 420 L245 485 C247 495, 255 500, 265 500 C280 500, 287 490, 285 480 L275 420 C270 400, 255 395, 255 380 L255 300 L260 300 C275 300, 285 290, 285 280 L285 180 C290 120, 270 80, 230 73 Z"/>
+            <path d="M145 120 C120 140, 90 180, 70 200 C60 210, 55 220, 60 235 L280 380 C290 385, 300 380, 305 370 C310 360, 305 350, 295 345 L100 210 C110 200, 130 180, 145 165 Z"/>
+            <rect x="285" y="340" width="8" height="140" rx="2" transform="rotate(25, 285, 340)" fill="var(--gold)"/>
+            <ellipse cx="355" cy="465" rx="25" ry="10" transform="rotate(25, 355, 465)" fill="var(--gold)"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
+      <span class="text-xs text-[var(--text-muted)] tracking-widest uppercase">Scroll</span>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2">
+        <path d="M12 5v14M5 12l7 7 7-7"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Instructor Section -->
+  <section id="about" class="relative py-24 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[rgba(27,73,101,0.1)] to-transparent"></div>
+    
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="reveal relative">
+          <div class="aspect-[4/5] rounded-3xl overflow-hidden glow-accent">
+            <div class="w-full h-full bg-gradient-to-br from-[var(--accent-blue)] to-[var(--accent-green)] flex items-center justify-center">
+              <svg class="w-40 h-40 opacity-30" viewBox="0 0 24 24" fill="white">
+                <circle cx="12" cy="8" r="4"/>
+                <path d="M12 14c-4 0-8 2-8 6v2h16v-2c0-4-4-6-8-6z"/>
+              </svg>
+            </div>
+          </div>
+          <div class="absolute -top-6 -right-6 w-32 h-32 border-2 border-[var(--gold)] rounded-3xl opacity-30"></div>
+          <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-[var(--gold)] rounded-2xl opacity-10"></div>
+        </div>
+
+        <div class="space-y-6">
+          <div class="reveal">
+            <span class="text-[var(--gold)] text-sm font-medium tracking-widest uppercase">Meet Your Instructor</span>
+          </div>
+          
+          <h2 class="reveal reveal-delay-1 font-display text-4xl md:text-5xl font-bold">
+            Kara Marshall
+          </h2>
+          
+          <p class="reveal reveal-delay-2 text-lg text-[var(--text-muted)] leading-relaxed">
+            With over a decade of experience in golf instruction, Kara specializes in youth and beginner instruction focused on building confidence and a genuine love for the game. Her patient, encouraging approach has helped hundreds of students discover the joy of golf.
+          </p>
+
+          <div class="reveal reveal-delay-3 grid grid-cols-2 gap-6 pt-4">
+            <div class="p-6 rounded-2xl bg-[var(--card-bg)] border border-[var(--border-subtle)]">
+              <svg class="w-8 h-8 text-[var(--gold)] mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+              </svg>
+              <h4 class="font-semibold text-lg">PGA Certified</h4>
+              <p class="text-sm text-[var(--text-muted)]">Professional instruction standards</p>
+            </div>
+            <div class="p-6 rounded-2xl bg-[var(--card-bg)] border border-[var(--border-subtle)]">
+              <svg class="w-8 h-8 text-[var(--gold)] mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+              <h4 class="font-semibold text-lg">All Ages</h4>
+              <p class="text-sm text-[var(--text-muted)]">Youth to adult programs</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Perfect For Section -->
+  <section class="py-24 relative">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="reveal font-display text-4xl md:text-5xl font-bold mb-4">
+          Perfect For
+        </h2>
+        <p class="reveal reveal-delay-1 text-[var(--text-muted)] text-lg max-w-2xl mx-auto">
+          Whether you're picking up a club for the first time or looking to refine your skills, our programs are designed for you.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="reveal lesson-card p-8 rounded-3xl text-center group">
+          <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-[var(--accent-green)] to-[var(--accent-blue)] flex items-center justify-center transform group-hover:scale-110 transition-transform">
+            <svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="8" r="5"/>
+              <path d="M20 21a8 8 0 1 0-16 0"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-xl mb-2">Adults New to Golf</h3>
+          <p class="text-[var(--text-muted)] text-sm">Start your golf journey with confidence and proper fundamentals.</p>
+        </div>
+
+        <div class="reveal reveal-delay-1 lesson-card p-8 rounded-3xl text-center group">
+          <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-[var(--accent-blue)] to-[var(--accent-green)] flex items-center justify-center transform group-hover:scale-110 transition-transform">
+            <svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+              <path d="M9 21v-4a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v4"/>
+              <path d="M15 6h6"/>
+              <path d="M15 10h6"/>
+              <circle cx="6" cy="15" r="3"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-xl mb-2">Women Golfers</h3>
+          <p class="text-[var(--text-muted)] text-sm">Learn the game comfortably in a supportive, encouraging environment.</p>
+        </div>
+
+        <div class="reveal reveal-delay-2 lesson-card p-8 rounded-3xl text-center group">
+          <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-[var(--accent-green)] to-[var(--accent-blue)] flex items-center justify-center transform group-hover:scale-110 transition-transform">
+            <svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-xl mb-2">Parents</h3>
+          <p class="text-[var(--text-muted)] text-sm">Learn alongside your kids and create lasting family memories on the course.</p>
+        </div>
+
+        <div class="reveal reveal-delay-3 lesson-card p-8 rounded-3xl text-center group">
+          <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-[var(--accent-blue)] to-[var(--accent-green)] flex items-center justify-center transform group-hover:scale-110 transition-transform">
+            <svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-xl mb-2">Course Beginners</h3>
+          <p class="text-[var(--text-muted)] text-sm">Prepare to step onto the course with all the skills you need.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What You'll Learn -->
+  <section id="learn" class="py-24 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-[var(--accent-blue)] via-transparent to-[var(--accent-green)] opacity-10"></div>
+    
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <h2 class="reveal font-display text-4xl md:text-5xl font-bold mb-6">
+            What You'll Learn
+          </h2>
+          <p class="reveal reveal-delay-1 text-[var(--text-muted)] text-lg mb-10">
+            Our comprehensive curriculum covers everything you need to become a confident golfer, from your first swing to your first round on the course.
+          </p>
+
+          <div class="space-y-6">
+            <div class="reveal reveal-delay-2 flex items-start gap-4 p-4 rounded-2xl bg-[var(--card-bg)] border border-[var(--border-subtle)] hover:border-[var(--gold)] transition-colors">
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[var(--gold)] to-[#b8944f] flex items-center justify-center flex-shrink-0">
+                <span class="text-[var(--bg-deep)] font-bold">01</span>
+              </div>
+              <div>
+                <h4 class="font-semibold text-lg mb-1">Grip, Stance & Posture</h4>
+                <p class="text-[var(--text-muted)] text-sm">Master the foundational elements that set up every great shot.</p>
+              </div>
+            </div>
+
+            <div class="reveal reveal-delay-3 flex items-start gap-4 p-4 rounded-2xl bg-[var(--card-bg)] border border-[var(--border-subtle)] hover:border-[var(--gold)] transition-colors">
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[var(--gold)] to-[#b8944f] flex items-center justify-center flex-shrink-0">
+                <span class="text-[var(--bg-deep)] font-bold">02</span>
+              </div>
+              <div>
+                <h4 class="font-semibold text-lg mb-1">Full Swing Fundamentals</h4>
+                <p class="text-[var(--text-muted)] text-sm">Develop a consistent, powerful swing that you can rely on.</p>
+              </div>
+            </div>
+
+            <div class="reveal reveal-delay-4 flex items-start gap-4 p-4 rounded-2xl bg-[var(--card-bg)] border border-[var(--border-subtle)] hover:border-[var(--gold)] transition-colors">
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[var(--gold)] to-[#b8944f] flex items-center justify-center flex-shrink-0">
+                <span class="text-[var(--bg-deep)] font-bold">03</span>
+              </div>
+              <div>
+                <h4 class="font-semibold text-lg mb-1">Chipping & Putting</h4>
+                <p class="text-[var(--text-muted)] text-sm">Sharpen your short game to lower your scores dramatically.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal relative">
+          <div class="aspect-square rounded-3xl bg-gradient-to-br from-[var(--accent-green)] to-[var(--accent-blue)] p-8 flex items-center justify-center relative overflow-hidden">
+            <div class="absolute inset-0 opacity-20">
+              <svg width="100%" height="100%" viewBox="0 0 100 100">
+                <pattern id="dimples" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                  <circle cx="10" cy="10" r="4" fill="white"/>
+                </pattern>
+                <rect width="100%" height="100%" fill="url(#dimples)"/>
+              </svg>
+            </div>
+            <svg class="w-64 h-64 relative z-10" viewBox="0 0 24 24" fill="white">
+              <circle cx="12" cy="12" r="10" stroke="var(--gold)" stroke-width="0.5"/>
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" fill="none" stroke="white" stroke-width="0.3"/>
+              <text x="12" y="14" text-anchor="middle" fill="var(--gold)" font-size="4" font-family="Playfair Display">GOLF</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lesson Options -->
+  <section id="programs" class="py-24 relative">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="reveal font-display text-4xl md:text-5xl font-bold mb-4">
+          Lesson Options
+        </h2>
+        <p class="reveal reveal-delay-1 text-[var(--text-muted)] text-lg max-w-2xl mx-auto">
+          Choose the program that fits your learning style and schedule. All equipment is available for beginners.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div class="reveal lesson-card p-10 rounded-3xl relative overflow-hidden group">
+          <div class="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-[var(--gold)] to-transparent opacity-10 rounded-bl-full"></div>
+          
+          <span class="inline-block px-4 py-1 rounded-full bg-[rgba(201,169,98,0.2)] text-[var(--gold)] text-sm font-medium mb-6">
+            Private Lessons
+          </span>
+          
+          <h3 class="font-display text-3xl font-bold mb-4">Starter Package</h3>
+          
+          <p class="text-[var(--text-muted)] mb-8">
+            Three focused private lessons covering driving, chipping, and putting fundamentals.
+          </p>
+          
+          <ul class="space-y-3 mb-8">
+            <li class="check-item text-[var(--text-light)]">3 Private 1-hour sessions</li>
+            <li class="check-item text-[var(--text-light)]">Personalized instruction</li>
+            <li class="check-item text-[var(--text-light)]">Equipment provided</li>
+            <li class="check-item text-[var(--text-light)]">Flexible scheduling</li>
+          </ul>
+          
+          <a href="#contact" class="btn-primary w-full text-center block">Inquire Now</a>
+        </div>
+
+        <div class="reveal reveal-delay-1 lesson-card p-10 rounded-3xl relative overflow-hidden group border-[var(--gold)]">
+          <div class="absolute top-0 right-0 px-4 py-1 bg-[var(--gold)] text-[var(--bg-deep)] text-sm font-bold rounded-bl-xl">
+            Popular
+          </div>
+          <div class="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-[var(--accent-green)] to-transparent opacity-10 rounded-bl-full"></div>
+          
+          <span class="inline-block px-4 py-1 rounded-full bg-[rgba(45,106,79,0.2)] text-[var(--accent-green)] text-sm font-medium mb-6">
+            Group Lessons
+          </span>
+          
+          <h3 class="font-display text-3xl font-bold mb-4">Beginner Small-Group Series</h3>
+          
+          <p class="text-[var(--text-muted)] mb-8">
+            Learn alongside other beginners in a fun, social atmosphere. Great for building connections.
+          </p>
+          
+          <ul class="space-y-3 mb-8">
+            <li class="check-item text-[var(--text-light)]">Weekly group sessions</li>
+            <li class="check-item text-[var(--text-light)]">Learn with peers</li>
+            <li class="check-item text-[var(--text-light)]">Equipment provided</li>
+            <li class="check-item text-[var(--text-light)]">Practice together</li>
+          </ul>
+          
+          <a href="#contact" class="btn-primary w-full text-center block">Join a Group</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-24 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-t from-[var(--accent-blue)] via-transparent to-transparent opacity-20"></div>
+    
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <!-- Left Side: Info -->
+        <div>
+          <h2 class="reveal font-display text-4xl md:text-5xl font-bold mb-6">
+            Ready to Start?
+          </h2>
+          <p class="reveal reveal-delay-1 text-[var(--text-muted)] text-lg mb-10">
+            Get in touch today to schedule your first lesson. Scan the QR code or use the contact details below.
+          </p>
+
+          <div class="space-y-4">
+            <!-- Phone -->
+            <div class="reveal reveal-delay-2 contact-info-card flex items-center gap-5">
+              <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-[var(--accent-green)] to-[var(--accent-blue)] flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+              </div>
+              <div class="flex-1">
+                <p class="text-xs uppercase tracking-wider text-[var(--text-muted)] mb-1">Phone</p>
+                <a href="tel:530-386-4032" class="text-xl font-semibold text-[var(--gold)] hover:underline">530-386-4032</a>
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="reveal reveal-delay-3 contact-info-card flex items-center gap-5">
+              <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-[var(--accent-blue)] to-[var(--accent-green)] flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+              </div>
+              <div class="flex-1">
+                <p class="text-xs uppercase tracking-wider text-[var(--text-muted)] mb-1">Email</p>
+                <a href="mailto:write.kara.marshall@icloud.com" class="text-lg font-semibold text-[var(--gold)] hover:underline break-all">write.kara.marshall@icloud.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: QR Code -->
+        <div class="reveal reveal-delay-2 flex justify-center">
+          <div class="lesson-card p-10 rounded-3xl text-center relative overflow-hidden max-w-md w-full">
+            <div class="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-[var(--gold)] to-transparent opacity-10 rounded-bl-full"></div>
+            
+            <h3 class="font-display text-2xl font-bold mb-3">Scan to Inquire</h3>
+            <p class="text-[var(--text-muted)] mb-6 text-sm">
+              Point your camera at the code to get instant access to lesson schedules and booking.
+            </p>
+
+            <!-- Mock QR Code -->
+            <div class="qr-large-container mb-6">
+              <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                 <rect width="200" height="200" fill="white"/>
+                 <!-- Top Left Finder -->
+                 <rect x="10" y="10" width="50" height="50" stroke="#0a1f14" stroke-width="8" fill="none"/>
+                 <rect x="20" y="20" width="30" height="30" fill="#0a1f14"/>
+                 
+                 <!-- Top Right Finder -->
+                 <rect x="140" y="10" width="50" height="50" stroke="#0a1f14" stroke-width="8" fill="none"/>
+                 <rect x="150" y="20" width="30" height="30" fill="#0a1f14"/>
+                 
+                 <!-- Bottom Left Finder -->
+                 <rect x="10" y="140" width="50" height="50" stroke="#0a1f14" stroke-width="8" fill="none"/>
+                 <rect x="20" y="150" width="30" height="30" fill="#0a1f14"/>
+                 
+                 <!-- Data Area Pattern (Mock) -->
+                 <g fill="#0a1f14">
+                   <rect x="70" y="10" width="10" height="10"/>
+                   <rect x="90" y="10" width="10" height="10"/>
+                   <rect x="110" y="10" width="10" height="10"/>
+                   <rect x="70" y="30" width="10" height="10"/>
+                   <rect x="100" y="30" width="10" height="10"/>
+                   <rect x="120" y="30" width="10" height="10"/>
+                   <rect x="80" y="50" width="10" height="10"/>
+                   <rect x="110" y="50" width="10" height="10"/>
+                   
+                   <rect x="10" y="70" width="10" height="10"/>
+                   <rect x="30" y="70" width="10" height="10"/>
+                   <rect x="50" y="80" width="10" height="10"/>
+                   <rect x="10" y="90" width="10" height="10"/>
+                   <rect x="40" y="90" width="10" height="10"/>
+                   <rect x="20" y="110" width="10" height="10"/>
+                   <rect x="50" y="110" width="10" height="10"/>
+                   
+                   <rect x="70" y="70" width="20" height="20"/>
+                   <rect x="110" y="70" width="20" height="20"/>
+                   <rect x="70" y="110" width="20" height="20"/>
+                   <rect x="110" y="110" width="20" height="20"/>
+                   <rect x="150" y="110" width="10" height="10"/>
+                   <rect x="180" y="110" width="10" height="10"/>
+                   
+                   <rect x="70" y="150" width="10" height="10"/>
+                   <rect x="90" y="150" width="10" height="10"/>
+                   <rect x="120" y="150" width="10" height="10"/>
+                   <rect x="140" y="150" width="10" height="10"/>
+                   <rect x="80" y="170" width="10" height="10"/>
+                   <rect x="110" y="170" width="10" height="10"/>
+                   <rect x="150" y="170" width="10" height="10"/>
+                   <rect x="180" y="170" width="10" height="10"/>
+                   
+                   <rect x="150" y="70" width="10" height="10"/>
+                   <rect x="170" y="80" width="10" height="10"/>
+                   <rect x="180" y="90" width="10" height="10"/>
+                   
+                   <rect x="70" y="140" width="10" height="10"/>
+                   <rect x="100" y="140" width="10" height="10"/>
+                   <rect x="170" y="140" width="10" height="10"/>
+                 </g>
+              </svg>
+            </div>
+
+            <p class="text-xs text-[var(--text-muted)]">Opens booking form on your device</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-12 border-t border-[var(--border-subtle)]">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-3">
+          <span class="font-display text-2xl font-bold text-[var(--gold)]">KM Golf</span>
+          <span class="text-[var(--text-muted)]">|</span>
+          <span class="text-[var(--text-muted)]">Beginner Golf Instruction</span>
+        </div>
+        
+        <p class="text-sm text-[var(--text-muted)]">
+          &copy; 2024 Kara Marshall Golf. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize variables
+    const particlesContainer = document.getElementById('particles');
+    const grassContainer = document.getElementById('grass');
+    
+    // Create floating particles
+    function createParticles() {
+      if (!particlesContainer) return;
+      for (let i = 0; i < 30; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 8 + 's';
+        particle.style.animationDuration = (6 + Math.random() * 4) + 's';
+        particlesContainer.appendChild(particle);
+      }
+    }
+
+    // Create grass blades
+    function createGrass() {
+      if (!grassContainer) return;
+      for (let i = 0; i < 100; i++) {
+        const blade = document.createElement('div');
+        blade.className = 'grass-blade';
+        blade.style.left = i + '%';
+        blade.style.height = (30 + Math.random() * 60) + 'px';
+        blade.style.animationDelay = Math.random() * 2 + 's';
+        blade.style.opacity = 0.3 + Math.random() * 0.4;
+        grassContainer.appendChild(blade);
+      }
+    }
+
+    // Scroll reveal
+    function initScrollReveal() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+      document.querySelectorAll('.reveal').forEach(el => {
+        observer.observe(el);
+      });
+    }
+
+    // Smooth scroll
+    function initSmoothScroll() {
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+    }
+
+    // Parallax effect
+    function initParallax() {
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero-bg');
+            if (hero) {
+              hero.style.backgroundPositionY = scrolled * 0.3 + 'px';
+            }
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+    }
+
+    // Navigation scroll effect
+    function initNavScroll() {
+      const nav = document.querySelector('nav');
+      window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        if (nav) {
+          if (currentScroll > 100) {
+            nav.style.background = 'rgba(10, 31, 20, 0.95)';
+          } else {
+            nav.style.background = 'rgba(10, 31, 20, 0.8)';
+          }
+        }
+      });
+    }
+
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      if (!prefersReducedMotion) {
+        createParticles();
+        createGrass();
+        initParallax();
+      }
+      initScrollReveal();
+      initSmoothScroll();
+      initNavScroll();
+    });
+  </script>
+</body>
+</html>
